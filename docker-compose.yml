@@ -19,6 +19,6 @@ services:
     links: 
       - mongo
     environment: 
-      - API_PORT=5000
-      - DB_ADDRESS=mongodb://mongo:27017/iai2-oven
+      - MEASUREMENT_HTTP_PORT=5000
+      - MEASUREMENT_DB_ADDRESS=mongodb://mongo:27017/iai2-oven
   

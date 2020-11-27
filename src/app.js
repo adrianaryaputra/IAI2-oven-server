@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const Config = require('./config');
 const app = express();
 const expressRouter = express.Router();
@@ -23,6 +24,7 @@ const deviceRoutes = deviceRouter({
 });
 
 
+app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(measurementRoutes);

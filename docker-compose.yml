@@ -3,7 +3,7 @@ version: '3'
 services: 
 
   mongo:
-    container_name: server-database-mongo
+    container_name: iai2-oven-database-mongo
     image: mongo
     ports: 
       - '27017:27017'
@@ -11,7 +11,7 @@ services:
       - ~/mongo/data:/data/db 
   
   server-api:
-    container_name: server-node-api
+    container_name: iai2-oven-node-api
     restart: always
     build: .
     ports:

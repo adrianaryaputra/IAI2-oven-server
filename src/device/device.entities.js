@@ -12,6 +12,7 @@ module.exports = ({ORM}) => {
             create,
             limit,
             submit,
+            sort,
             updateById,
             deleteObj,
             baseQuery: q,
@@ -43,6 +44,11 @@ module.exports = ({ORM}) => {
   
     function create(obj) {
         return ORM.create(obj);
+    }
+
+    function sort(order) {
+        const q = this.baseQuery.sort({name: order});
+        return _createMethod(q);
     }
   
     function submit() {

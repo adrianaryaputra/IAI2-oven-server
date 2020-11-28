@@ -4,6 +4,8 @@ module.exports = ({entities, measurementEntities}) => {
   
         const device = entities();
         const measurement = measurementEntities();
+
+        device.sort(1);
     
         if(query.name){
             device.findByName(query.name);

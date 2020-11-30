@@ -13,6 +13,10 @@ module.exports = ({measurement: entities}) => {
         if(query.date_to) measurement.dateTo(query.date_to);
         measurement.sort(-1);
         if(query.limit) measurement.limit(query.limit);
+        
+        if(query.get_all_mac){
+            return measurement.getAllMac();
+        }
     
         result = await measurement.submit();
         return result;

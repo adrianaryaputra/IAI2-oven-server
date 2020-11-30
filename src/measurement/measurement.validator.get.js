@@ -19,7 +19,8 @@ module.exports = Joi.object({
   date_to: Joi.date(),
   limit: Joi
     .number()
-    .min(1)
+    .min(1),
+  get_all_mac: Joi.any(),
 
 });
 

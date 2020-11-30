@@ -14,6 +14,7 @@ module.exports = ({ORM}) => {
             sort,
             limit,
             submit,
+            getAllMac,
             deleteAllMac,
             deleteObj,
             baseQuery: q,
@@ -67,6 +68,12 @@ module.exports = ({ORM}) => {
   
     function deleteObj(obj) {
         return ORM.deleteMany(obj);
+    }
+
+    function getAllMac() {
+        return ORM.aggregate([
+            {$group: {_id: '$mac_address'}}
+        ]);
     }
   
   }

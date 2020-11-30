@@ -10,6 +10,7 @@ module.exports = function({ listMeasurement, validator }){
       date_from: httpRequest.query.date_from,
       date_to: httpRequest.query.date_to,
       limit: httpRequest.query.limit,
+      get_all_mac: httpRequest.query.get_all_mac,
     }
     
     try{

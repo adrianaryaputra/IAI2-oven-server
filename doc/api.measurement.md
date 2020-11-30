@@ -25,6 +25,7 @@ retrieve available record data from database with matching queries criteria.
 - `mac_address` - specify devices by MAC addres to return record from. Optional.
 - `date_from` - return all record since this date. Must be a valid javascript date.
 - `date_to` - return all record up to this date. Must be a valid javascript date.
+- `get_all_mac` - return all mac address if set to true
 
 ### 📥 Response
 A JSON list containing all measurement record matching queries criteria.

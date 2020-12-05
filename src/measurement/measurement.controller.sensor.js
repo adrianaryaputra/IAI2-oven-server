@@ -20,6 +20,7 @@ module.exports = function({ sensorControl, validator }){
         headers: headers,
         statusCode: 200,
         body: {
+          server_time: new Date().toISOString(),
           success: true,
           payload: measurementBody,
         },

@@ -21,6 +21,7 @@ module.exports = ({cases, validator}) => {
         headers: headers,
         statusCode: 200,
         body: {
+          server_time: new Date().toISOString(),
           success: true,
           payload: casesDevice,
         },

@@ -7,7 +7,7 @@ module.exports = ({cases, validator}) => {
     };
 
     const nonValidated = {
-      name: httpRequest.query.name,
+      id: httpRequest.query.id,
     };
 
     const casesList = cases.list;

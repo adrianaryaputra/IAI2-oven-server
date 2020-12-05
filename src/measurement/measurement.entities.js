@@ -1,10 +1,13 @@
-module.exports = ({ORM}) => {
+module.exports = ({
+    measurementORM,
+    sensorORM,
+}) => {
 
     return () => {
         return _createMethod();
     }
   
-    function _createMethod(q = ORM.find({})){
+    function _createMethod(q = measurementORM.find({})){
         return Object.freeze({
             findAll,
             findByMac,
@@ -15,6 +18,8 @@ module.exports = ({ORM}) => {
             limit,
             submit,
             getAllMac,
+            editSensor,
+            getSensor,
             deleteAllMac,
             deleteObj,
             baseQuery: q,
@@ -54,8 +59,45 @@ module.exports = ({ORM}) => {
         return _createMethod(q);
     }
   
-    function create(obj) {
-        return ORM.create(obj);
+    async function create(obj) {
+        const res = await measurementORM.create(obj);
+        const sensor_res = await sensorORM.find({mac_address: res.mac_address});
+        if(sensor_res.length == 0){
+            return createSensor(res.mac_address);
+        } else {
+            return sensor_res[0];
+        }
+    }
+
+    function createSensor(mac_address){
+        return sensorORM.create({
+            mac_address: mac_address,
+            scaler: {
+                gain: 1,
+                shift: 0,
+            },
+            refresh_time: 60,
+        }) 
+    }
+
+    function editSensor(mac_list, data) {
+        return sensorORM.updateMany(
+            {mac_address: mac_list},
+            data
+        )
+    }
+
+    async function getSensor(mac) {
+        let res = await sensorORM.find({
+            mac_address: mac
+        });
+        if(res.length) return res[0];
+        else {
+            for(idx=0; idx<mac.length; idx++){
+                res = await createSensor(mac[idx]);
+            }
+            return res
+        }
     }
   
     function submit() {
@@ -63,15 +105,15 @@ module.exports = ({ORM}) => {
     }
   
     function deleteAllMac(mac_address) {
-        return ORM.deleteMany({mac_address});
+        return measurementORM.deleteMany({mac_address});
     }
   
     function deleteObj(obj) {
-        return ORM.deleteMany(obj);
+        return measurementORM.deleteMany(obj);
     }
 
     function getAllMac() {
-        return ORM.aggregate([
+        return measurementORM.aggregate([
             {$group: {_id: '$mac_address'}}
         ]);
     }

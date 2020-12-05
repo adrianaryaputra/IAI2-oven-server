@@ -7,8 +7,8 @@ module.exports = ({entities, measurementEntities}) => {
 
         device.sort(1);
     
-        if(query.name){
-            device.findByName(query.name);
+        if(query.id){
+            device.findById(query.id);
         }
     
         result = await device.submit();
@@ -18,10 +18,13 @@ module.exports = ({entities, measurementEntities}) => {
         for(dev of result){
             mac = dev.mac_address;
             last = await measurement.findByMac(mac).sort(-1).limit(1).submit();
+            tuning = await measurement.getSensor(mac);
             dev.last_measurement = last;
             result2.push({
                 ...dev._doc,
                 last_measurement: last[0],
+                scaler: tuning.scaler,
+                refresh_time: tuning.refresh_time,
             })
         }
         

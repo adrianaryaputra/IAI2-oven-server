@@ -12,7 +12,7 @@ this is an interface to add a device that correlate with one or more temperature
 retrieve existing device in database.
 
 ### 🔎 Parameter
-- `name` - specify device's name to query
+- `id` - specify device's id to query
 
 ### 📥 Response
 A JSON list containing all devices.

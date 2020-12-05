@@ -29,7 +29,7 @@ module.exports = ({ORM}) => {
     }
 
     function findById(id) {
-        const q = this.baseQuery.findById(id);
+        const q = this.baseQuery.find({_id: id});
         return _createMethod(q);
     }
 

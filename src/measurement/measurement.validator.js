@@ -1,6 +1,7 @@
 const utils = require('../utils')
 const POSTSchema = require('./measurement.validator.post');
 const httpGetQuerySchema = require('./measurement.validator.get');
+const sensorSchema = require('./measurement.validator.sensor');
 
 
 module.exports = Object.freeze({
@@ -15,6 +16,12 @@ module.exports = Object.freeze({
       obj, 
       schema: httpGetQuerySchema
     }); 
+  },
+  validateSensorQuery: (obj) => {
+    return validateJoi({
+      obj,
+      schema: sensorSchema
+    });
   },
 });
 

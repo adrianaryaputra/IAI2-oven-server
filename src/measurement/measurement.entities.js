@@ -73,8 +73,8 @@ module.exports = ({
         return sensorORM.create({
             mac_address: mac_address,
             scaler: {
-                gain: 1,
-                shift: 0,
+                gain: [1, 1, 1],
+                shift: [0, 0, 0],
             },
             refresh_time: 60,
         }) 

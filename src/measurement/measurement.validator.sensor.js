@@ -15,8 +15,8 @@ module.exports = Joi.object({
     MacSchema,
   ),
   scaler: Joi.object({
-    gain: Joi.number(),
-    shift: Joi.number(),
+    gain: Joi.array().items(Joi.number()),
+    shift: Joi.array().items(Joi.number()),
   }),
   refresh_time: Joi.any(),
 

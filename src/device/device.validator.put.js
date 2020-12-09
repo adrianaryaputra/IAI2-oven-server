@@ -1,7 +1,6 @@
 const Joi = require('joi')
 
 const joiMac = Joi.string()
-                  .required()
                   .pattern(
                     /^([0-9A-Fa-f]{2}[:-]){5}([0-9A-Fa-f]{2})$/
                   )

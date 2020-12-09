@@ -8,9 +8,10 @@ module.exports = ({cases, validator}) => {
 
     const nonValidated = {
       id: httpRequest.body.id,
-      mac_address: httpRequest.body.mac_address,
-      name: httpRequest.body.name,
     };
+
+    if(httpRequest.body.mac_address) nonValidated.mac_address = httpRequest.body.mac_address;
+    if(httpRequest.body.name) nonValidated.name = httpRequest.body.name;
 
     try{
       const validated = validator(nonValidated);

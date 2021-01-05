@@ -4,16 +4,11 @@ module.exports = ({entities, measurementEntities}) => {
   
         const device = entities();
         const measurement = measurementEntities();
-
-        device.sort(1);
-    
-        if(query.id){
-            device.findById(query.id);
-        }
-    
-        result = await device.submit();
-
-        result2 = new Array();
+        
+        if(query.id){ result = await device.findById(query.id).submit(); }
+        else{ result = await device.sort(1).submit(); }
+        
+        const result2 = new Array();
 
         for(dev of result){
             mac = dev.mac_address;

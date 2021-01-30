@@ -99,6 +99,10 @@ module.exports = ({database: DB}) => {
             }],
             required: true,
         },
+        mac_address: {
+            type: String,
+            required: true,
+        },
     });
   
     return DB.model('document', MeasurementSchema);

@@ -12,7 +12,8 @@ module.exports = ({entities, measurementEntities}) => {
 
         for(dev of result){
             mac = dev.mac_address;
-            last = await measurement.findByMac(mac).sort(-1).limit(1).submit();
+            // last = await measurement.findByMac(mac).sort(-1).limit(1).submit();
+            last = await measurement.latestByMac(mac);
             tuning = await measurement.getSensor(mac);
             dev.last_measurement = last;
             result2.push({

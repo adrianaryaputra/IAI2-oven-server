@@ -1,6 +1,7 @@
 module.exports = ({
     measurementORM,
     sensorORM,
+    latestORM,
 }) => {
 
     return () => {
@@ -22,6 +23,7 @@ module.exports = ({
             getSensor,
             deleteAllMac,
             deleteObj,
+            latestByMac,
             baseQuery: q,
         })
     }
@@ -33,6 +35,14 @@ module.exports = ({
     function findByMac(mac_address) {
         const q = this.baseQuery.find({mac_address});
         return _createMethod(q);
+    }
+
+    function latestByMac(mac_address) {
+        return latestORM
+            .find({mac_address})
+            .sort({timestamp: -1})
+            .limit(1)
+            .exec()
     }
   
     function dateFrom(date) {
@@ -61,6 +71,11 @@ module.exports = ({
   
     async function create(obj) {
         const res = await measurementORM.create(obj);
+        const latest = await latestORM.replaceOne(
+            {mac_address: res.mac_address},
+            obj,
+            { upsert: true }
+        ) 
         const sensor_res = await sensorORM.find({mac_address: res.mac_address});
         if(sensor_res.length == 0){
             return createSensor(res.mac_address);

@@ -9,6 +9,7 @@ const expressRouter = express.Router();
 const expressCallback = require('./callback.express');
 const measurementRouter = require('./measurement/measurement.router');
 const deviceRouter = require('./device/device.router');
+const documentRouter = require('./document/document.router');
 
 
 const measurementRoutes = measurementRouter({
@@ -23,12 +24,19 @@ const deviceRoutes = deviceRouter({
   httpAddress: '/API' + Config.VERSION + '/device', 
 });
 
+const documentRoutes = documentRouter({
+  httpRouter: expressRouter,
+  httpCallback: expressCallback,
+  httpAddress: '/API' + Config.VERSION + '/document', 
+});
+
 
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(measurementRoutes);
 app.use(deviceRoutes);
+app.use(documentRoutes);
 
 
 server = app.listen(Config.HTTP_PORT);

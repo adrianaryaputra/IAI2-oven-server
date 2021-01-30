@@ -89,6 +89,10 @@ module.exports = ({database: DB}) => {
                     type: Number,
                     required: true,
                 },
+                core_diameter: {
+                    type: Number,
+                    required: true,
+                },
                 remark: {
                     type: String,
                 },

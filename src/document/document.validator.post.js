@@ -10,6 +10,7 @@ const LoadSchema = Joi.object({
     thick: Joi.number().required(),
   }).required(),
   od: Joi.number().required(),
+  core_diameter: Joi.number().required(),
   remark: Joi.string(),
   weight: Joi.number().required(),
 }).required();

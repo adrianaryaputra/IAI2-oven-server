@@ -10,7 +10,9 @@ const LoadSchema = Joi.object({
     thick: Joi.number(),
   }),
   od: Joi.number(),
+  core_diameter: Joi.number(),
   remark: Joi.string(),
+  weight: Joi.number(),
 });
 
 module.exports = Joi.object({
@@ -30,5 +32,5 @@ module.exports = Joi.object({
   duration: Joi.array().items(Joi.number()),
   cooling: Joi.number(),
   load: Joi.array().items(LoadSchema),
-  mac_address: Joi.string().required(),
+  mac_address: Joi.string(),
 })

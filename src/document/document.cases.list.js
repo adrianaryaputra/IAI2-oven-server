@@ -10,7 +10,7 @@ module.exports = ({entities}) => {
         if(query.lot_num){ device = device.findByLotNum(query.lot_num) }
         
         result = await device.sort(1).limit(50).submit();
-        
+
         return result;
   
     }

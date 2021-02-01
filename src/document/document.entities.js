@@ -7,6 +7,7 @@ module.exports = ({ORM}) => {
     function _createMethod(q = ORM.find({})){
         return Object.freeze({
             findAll,
+            findByLotNum,
             findByName,
             findById,
             create,
@@ -21,6 +22,11 @@ module.exports = ({ORM}) => {
   
     function findAll() {
         return _createMethod(this.baseQuery);
+    }
+
+    function findByLotNum(lot) {
+        const q = this.baseQuery.find({lot_num: lot});
+        return _createMethod(q);
     }
   
     function findByName(name) {

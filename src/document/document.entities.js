@@ -10,6 +10,7 @@ module.exports = ({ORM}) => {
             findByLotNum,
             findByName,
             findById,
+            findUnfinishedState,
             create,
             limit,
             submit,
@@ -36,6 +37,11 @@ module.exports = ({ORM}) => {
 
     function findById(id) {
         const q = this.baseQuery.find({_id: id});
+        return _createMethod(q);
+    }
+
+    function findUnfinishedState() {
+        const q = this.baseQuery.find({isFinish: false});
         return _createMethod(q);
     }
 

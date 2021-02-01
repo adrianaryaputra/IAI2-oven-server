@@ -20,6 +20,7 @@ module.exports = ({cases, validator}) => {
       cooling: httpRequest.body.cooling,
       load: httpRequest.body.load,
       mac_address: httpRequest.body.mac_address,
+      isFinish: false,
     };
 
     try{

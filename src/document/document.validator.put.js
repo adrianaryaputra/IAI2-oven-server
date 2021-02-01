@@ -33,4 +33,5 @@ module.exports = Joi.object({
   cooling: Joi.number(),
   load: Joi.array().items(LoadSchema),
   mac_address: Joi.string(),
+  isFinish: Joi.bool(),
 })

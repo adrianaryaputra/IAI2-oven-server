@@ -12,7 +12,7 @@ module.exports = ({cases, validator}) => {
       'id', 'lot_num', 'spk_num', 'spk_date',
       'furnace', 'operator', 'special', 'temper',
       'start_date', 'temperature', 'duration',
-      'cooling', 'load'
+      'cooling', 'load', 'isFinish',
     ]
 
     for (key of keys){

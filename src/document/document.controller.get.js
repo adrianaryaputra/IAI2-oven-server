@@ -7,7 +7,7 @@ module.exports = ({cases, validator}) => {
     };
 
     const nonValidated = new Object();
-    let keys = ['id', 'lot_num'];
+    let keys = ['id', 'lot_num', 'unfinished'];
     for (key of keys){
       if(httpRequest.query[key]) nonValidated[key] = httpRequest.query[key];
     }

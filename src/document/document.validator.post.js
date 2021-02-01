@@ -33,4 +33,5 @@ module.exports = Joi.object({
   cooling: Joi.number().required(),
   load: Joi.array().items(LoadSchema).required(),
   mac_address: Joi.string().required(),
+  isFinish: Joi.bool().required(),
 }).required()

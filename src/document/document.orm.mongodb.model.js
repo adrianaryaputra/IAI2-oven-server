@@ -107,6 +107,10 @@ module.exports = ({database: DB}) => {
             type: String,
             required: true,
         },
+        isFinish: {
+            type: Boolean,
+            required: true,
+        }
     });
   
     return DB.model('document', MeasurementSchema);

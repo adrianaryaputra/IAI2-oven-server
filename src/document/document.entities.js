@@ -62,7 +62,7 @@ module.exports = ({ORM}) => {
     }
 
     function sort(order) {
-        const q = this.baseQuery.sort({name: order});
+        const q = this.baseQuery.sort({lot_num: order});
         return _createMethod(q);
     }
   
